@@ -17,7 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: run-soatest-action
-      uses: parasoft/run-soatest-action@1.0.0
+      uses: parasoft/run-soatest-action@lee_sva842
       with:
         installDir: D:\Parasoft\SOAtest & Virtualize\2023.2
         soatestWorkspace:  ${{ github.workspace }}/soatest
