@@ -30,3 +30,26 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
+publish:
+    name: Publish Reports
+    needs: [build]
+    permissions:
+        checks: write
+        pull-requests: write
+        # only required for workflows in private repositories
+        contents: read
+        issues: read
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Artifacts  # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v4
+        with:
+          name: reports
+      - name: Upload results
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        if: always()
+        with:
+          files: |
+             soatest\reports\report-xunit.xml
