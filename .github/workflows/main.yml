@@ -23,7 +23,7 @@ jobs:
         soatestWorkspace:  ${{ github.workspace }}/soatest
         testConfig: builtin://Demo Configuration
         resource: TestAssets/PB-ParabankServices-v3.tst
-        settings: ../../localsettings.properties
+        settings: soatest/localsettings.properties
         report: soatest/reports
         reportFormat: xml
         environment: ../../../test-env
