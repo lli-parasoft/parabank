@@ -30,6 +30,12 @@ jobs:
         convertReportToXUnit: TRUE
         additionalParams:
          -include PB-ParabankServices-v3.tst
+         
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: reports
+        path: soatest/reports
   publish:
     name: Publish Reports
     needs: [test-soatest]
@@ -47,7 +53,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: report
+          name: reports
  
       - uses: actions/setup-python@v5
         with:
@@ -58,4 +64,4 @@ jobs:
         if: always()
         with:
           files: |
-            report-xunit.xml
+            soatest\reports\report-xunit.xml
