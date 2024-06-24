@@ -64,4 +64,4 @@ jobs:
         if: always()
         with:
           files: |
-            soatest\reports\report-xunit.xml
+            report-xunit.xml
