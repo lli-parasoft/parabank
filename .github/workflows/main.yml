@@ -1,0 +1,32 @@
+name: test-parabank-soatest-System-test
+ 
+on: 
+# push:
+    #branches: [ main ]
+    # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+permissions:
+   checks: write
+   pull-requests: write
+   contents: read
+   issues: read
+jobs:
+  test-soatest:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: run-soatest-action
+      uses: parasoft/run-soatest-action@1.0.0
+      with:
+        installDir: D:\Parasoft\SOAtest & Virtualize\2023.2
+        soatestWorkspace:  ${{ github.workspace }}/soatest
+        testConfig: builtin://Demo Configuration
+        resource: TestAssets/PB-ParabankServices-v3.tst
+        settings: soatest/localsettings.properties
+        report: soatest/reports
+        reportFormat: xml
+        environment: ../../../test-env
+        convertReportToXUnit: TRUE
+        additionalParams:
+         -include PB-ParabankServices-v3.tst
